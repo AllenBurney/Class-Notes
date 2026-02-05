@@ -1,119 +1,119 @@
 {
-  "SQL": [
+  "sql": [
     {
       "title": "Calculate and print (i) A+B,(ii) A-B,(iii) A*B, (iv) A/B",
       "date": "2026-01-07",
-      "file": "files/SQL/2026-01-07/plsql_prog1.sql"
+      "file": "files/sql/2026-01-07/plsql_prog1.sql"
     },
     {
       "title": "CALCULATE 'F' FROM C/5=(F-32)/9.",
       "date": "2026-01-07",
-      "file": "files/SQL/2026-01-07/PLSQL_PROG2.sql"
+      "file": "files/sql/2026-01-07/PLSQL_PROG2.sql"
     },
     {
       "title": "TAKE C=10,20,...,100 INPUT 'C' AND CALCULATE 'F'.",
       "date": "2026-01-07",
-      "file": "files/SQL/2026-01-07/PLSQL_PROG3.sql"
+      "file": "files/sql/2026-01-07/PLSQL_PROG3.sql"
     },
     {
       "title": "CALC TOTAL=SUM OF BEST 2 PAPERS. AVG=TOTAL/2. CALCULATE GRADE",
       "date": "2026-01-07",
-      "file": "files/SQL/2026-01-07/PLSQL_PROG4.sql"
+      "file": "files/sql/2026-01-07/PLSQL_PROG4.sql"
     },
     {
       "title": "Currency Conversion",
       "date": "2026-01-14",
-      "file": "files/SQL/2026-01-14/currency_conversion.sql"
+      "file": "files/sql/2026-01-14/currency_conversion.sql"
     },
     {
       "title": "Hcf/Lcm",
       "date": "2026-01-14",
-      "file": "files/SQL/2026-01-14/hcf_lcm.sql"
+      "file": "files/sql/2026-01-14/hcf_lcm.sql"
     },
     {
       "title": "Basics-KG",
       "date": "2026-01-14",
-      "file": "files/SQL/2026-01-14/kg.sql"
+      "file": "files/sql/2026-01-14/kg.sql"
     },
     {
       "title": "Factorial Function",
       "date": "2026-01-21",
-      "file": "files/SQL/2026-01-21/fact_func.sql"
+      "file": "files/sql/2026-01-21/fact_func.sql"
     },
     {
       "title": "Factorial Program",
       "date": "2026-01-21",
-      "file": "files/SQL/2026-01-21/prog_fact.sql"
+      "file": "files/sql/2026-01-21/prog_fact.sql"
     },
     {
       "title": "Hcf Function",
       "date": "2026-01-21",
-      "file": "files/SQL/2026-01-21/hcf_func.sql"
+      "file": "files/sql/2026-01-21/hcf_func.sql"
     },
     {
       "title": "Hcf Program",
       "date": "2026-01-21",
-      "file": "files/SQL/2026-01-21/prog_hcf.sql"
+      "file": "files/sql/2026-01-21/prog_hcf.sql"
     },
     {
       "title": "Lcm Function",
       "date": "2026-01-21",
-      "file": "files/SQL/2026-01-21/lcm_func.sql"
+      "file": "files/sql/2026-01-21/lcm_func.sql"
     },
     {
       "title": "Sine Function",
       "date": "2026-01-21",
-      "file": "files/SQL/2026-01-21/sine_func.sql"
+      "file": "files/sql/2026-01-21/sine_func.sql"
     },
     {
       "title": "Exponential Function",
       "date": "2026-01-28",
-      "file": "files/SQL/2026-01-28/expx_func.sql"
+      "file": "files/sql/2026-01-28/expx_func.sql"
     },
     {
       "title": "Payslip",
       "date": "2026-01-28",
-      "file": "files/SQL/2026-01-28/payslip.sql"
+      "file": "files/sql/2026-01-28/payslip.sql"
     },
     {
       "title": "Payslip Whole",
       "date": "2026-01-28",
-      "file": "files/SQL/2026-01-28/payslipwhole.sql"
+      "file": "files/sql/2026-01-28/payslipwhole.sql"
     },
     {
       "title": "Hcf/Lcm Program",
       "date": "2026-01-28",
-      "file": "files/SQL/2026-01-28/q1_q2_main.sql"
+      "file": "files/sql/2026-01-28/q1_q2_main.sql"
     },
     {
       "title": "Hcf Program",
       "date": "2026-01-28",
-      "file": "files/SQL/2026-01-28/q1as1_func.sql"
+      "file": "files/sql/2026-01-28/q1as1_func.sql"
     },
     {
       "title": "Lcm Program",
       "date": "2026-01-28",
-      "file": "files/SQL/2026-01-28/q2as1_func.sql"
+      "file": "files/sql/2026-01-28/q2as1_func.sql"
     },
     {
       "title": "Define 1-dim array and store some numbers.",
       "date": "2026-02-04",
-      "file": "files/SQL/2026-02-04/arr1.sql"
+      "file": "files/sql/2026-02-04/arr1.sql"
     },
     {
       "title": "Calculate Frequency in an array.",
       "date": "2026-02-04",
-      "file": "files/SQL/2026-02-04/arr2.sql" 
+      "file": "files/sql/2026-02-04/arr2.sql" 
     },
     {
       "title": "Payslip Updated",
       "date": "2026-02-04",
-      "file": "files/SQL/2026-02-04/payslip2.sql"
+      "file": "files/sql/2026-02-04/payslip2.sql"
     },
     {
       "title": "Payslip Updated Whole",
       "date": "2026-02-04",
-      "file": "files/SQL/2026-02-04/payslipwhole(updated).sql"
+      "file": "files/sql/2026-02-04/payslipwhole(updated).sql"
     }
   ],
 
@@ -176,22 +176,22 @@
     {
       "title": "Data Cleaning Day-4 Prog",
       "date": "2026-01-27",
-      "file": "files/DS/2026-01-27/EDA Part 1.ipynb"
+      "file": "files/DS/2026-01-27/EDA_Part_1.ipynb"
     },
     {
       "title": "Data Cleaning Day-5 Prog-1",
       "date": "2026-02-03",
-      "file": "files/DS/2026-02-03/EDA 10.ipynb"
+      "file": "files/DS/2026-02-03/EDA_10.ipynb"
     },
     {
       "title": "Data Cleaning Day-5 Prog-2",
       "date": "2026-02-03",
-      "file": "files/DS/2026-02-03/EDA 11.ipynb"
+      "file": "files/DS/2026-02-03/EDA_11.ipynb"
     },
     {
       "title": "Data Cleaning Day-5 Prog-3",
       "date": "2026-02-03",
-      "file": "files/DS/2026-02-03/EDA 12.ipynb"
+      "file": "files/DS/2026-02-03/EDA_12.ipynb"
     },
     {
       "title": "Data Cleaning Day-5 File",
@@ -219,7 +219,7 @@
     {
       "title": "DAY 2",
       "date": "2026-01-22",
-      "file": "files/PL/2026-01-22/prolog day 2.txt"
+      "file": "files/PL/2026-01-22/prolog_day_2.txt"
     },
     {
       "title": "p8",
