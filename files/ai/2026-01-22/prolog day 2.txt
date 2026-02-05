@@ -1,0 +1,95 @@
+myloop(N):-
+	N>0,write('Number: '),
+	write(N),nl,
+	M is N-1,
+	myloop(M).
+
+%q3 WAP in Prolog to input Roll, Name, P1, P2, P3. Calculate T=sum of best two papers,
+%av=T/2. Calculate Grade.
+marks:-
+	write('Enter roll= '),read(Roll),
+	write('Enter name= '),read(Name),
+	write('Enter p1= '),read(P1),
+	write('Enter p2= '),read(P2),
+	write('Enter p3= '),read(P3),
+	%To get the smallest marks
+	(
+		P1=<P2, P1=<P3->Small is P1
+		;
+		(
+			P2=<P1, P2=<P3->Small is P2
+			;
+			Small is P3
+		)
+	),
+	%to calculate total=sum of best 2 papers
+	T is P1+P2+P3-Small,
+	%to get average
+	AV is T/2,
+	%To calculate grade of a student
+	(
+	AV>=70->Grade= 'A'
+	;
+        AV>=60->Grade='B'
+        ;
+	AV>=50->Grade='C'
+        ;
+        AV>=40->Grade='D'
+        ;
+       Grade='F'
+	),
+	write('Total= '),write(T),nl,
+	write('Average= '),write(AV),nl,
+	write('Grade= '),write(Grade),nl.
+
+
+
+
+%q4as1prolog.pl: Write a program in prolog to input emp_id, name, basic pay.
+%Calculate da=3% of basic pay, hra=15% of basic pay subject to maximum of 15000, medical=5% of basic subject to a minimum of 1000,
+%gross=basic pay+da+hra+medical, pf=8.33% of (basic+da), net_pay=gross_pf.
+%Print emp_id, name, basic pay, da, hra, gross, pf, net_pay.
+pay:-
+	write('Enter Employee Id: '), read(Emp_id),nl,
+	write('Enter Employee name: '), read(Name),nl,
+	write('Enter basic pay: '), read(Basic),nl,
+	Da is 3/100*Basic,
+	Hra is 0.15*Basic,
+	
+
+
+female(chandra).
+female(anita).
+female(mita).
+female(mahima).
+female(madhabi).
+
+grff(A,C):-father(A,B),father(B,C),male(A).
+grfm(A,C):-
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
