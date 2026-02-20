@@ -305,6 +305,31 @@
       "title": "p9",
       "date": "2026-02-05",
       "file": "files/PL/2026-02-05/p9.pl"
+    },
+    {
+      "title": "listconcat",
+      "date": "2026-02-12",
+      "file": "files/PL/2026-02-12/listconcat.pl"
+    },
+    {
+      "title": "listlength",
+      "date": "2026-02-12",
+      "file": "files/PL/2026-02-12/listlen.pl"
+    },
+    {
+      "title": "TeacherCode",
+      "date": "2026-02-12",
+      "file": "files/PL/2026-02-12/teacgercode.docx"
+    },
+    {
+      "title": "teacherdb",
+      "date": "2026-02-12",
+      "file": "files/PL/2026-02-12/teacherdb.pl"
+    },
+    {
+      "title": "teacherquery",
+      "date": "2026-02-12",
+      "file": "files/PL/2026-02-12/teacherquery.pl"
     }
   ]
 }

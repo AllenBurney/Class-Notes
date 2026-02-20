@@ -1,0 +1,12 @@
+teacher(RB,DBMS,SE,MP,NW,DIG).
+teacher(SA,DBMS,SE,WEB,C,DS).
+teacher(SD,DS,C,SE,DIG,JAVA).
+teacher(SS,OS,MP,PYTHON,DS,VLSI).
+teacher(JGD,TOC,CO,COMP,DM,DS).
+teacher(AA,ALGO,AI,ML,GRAPH,DS).
+teacher(DD,C,CPP,DS,MP,DBMS).
+teacher(KG,C,PYTHON,OS,WEB,NW).
+teacher(SM,JAVA,PYTHON,PROLOG,NW,SE).
+teacher(SP,DS,ML,ICT,WEB,DS).
+teacher(NS,PYTHON,C,DS,ML,WEB).
+teacher(AC,C,AI,PYTHON,ML,WEB).
