@@ -1,0 +1,6 @@
+--write a pl sql to input 10 arbitary numbers and store in 1 dim array say a(10).Calculate and print 
+--the distinct number and its frequency
+-- 10 50 10 50 100
+--10       2
+--50       2
+--100      1

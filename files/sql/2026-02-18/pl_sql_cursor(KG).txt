@@ -1,0 +1,590 @@
+CREATE TABLE emp (
+    empno   NUMBER(4) PRIMARY KEY,
+    ename   VARCHAR2(20),
+    job     VARCHAR2(20),
+    sal     NUMBER(8,2),
+    deptno  NUMBER(3)
+);
+
+INSERT INTO emp VALUES (101, 'Joy Roy',   'Manager',    50000, 10);
+INSERT INTO emp VALUES (102, 'Anil Kapoor',  'Clerk',      25000, 10);
+INSERT INTO emp VALUES (103, 'Bobby Banerjee',    'Analyst',    40000, 20);
+INSERT INTO emp VALUES (104, 'David Paul',  'Salesman',   30000, 20);
+INSERT INTO emp VALUES (105, 'Emma Thurman',   'Manager',    55000, 30);
+INSERT INTO emp VALUES (106, 'Sophia Loren', 'Clerk',      22000, 30);
+INSERT INTO emp VALUES (107, 'Liam Neeson',   'Analyst',    48000, 10);
+INSERT INTO emp VALUES (108, 'Manali Thakur',     'Manager',   57000, 20);
+
+COMMIT;
+----------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+**** Problem 1: Write a PL/SQL program to display all employee names and their salaries from the EMP table using a cursor.
+
+Solution:
+
+DECLARE
+    CURSOR emp_cursor IS
+        SELECT ename, sal FROM emp;
+    v_ename emp.ename%TYPE;
+    v_sal   emp.sal%TYPE;
+BEGIN
+    OPEN emp_cursor;
+    LOOP
+        FETCH emp_cursor INTO v_ename, v_sal;
+        EXIT WHEN emp_cursor%NOTFOUND;
+        DBMS_OUTPUT.PUT_LINE('Employee: ' || v_ename || ', Salary: ' || v_sal);
+    END LOOP;
+    CLOSE emp_cursor;
+END;
+/
+
+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+***Problem 2: Increase the salary of each employee by 10% using a cursor and update the table.
+
+Solution:
+
+DECLARE
+    CURSOR c_emp IS
+        SELECT empno, sal FROM emp;
+    v_empno emp.empno%TYPE;
+    v_sal   emp.sal%TYPE;
+BEGIN
+    OPEN c_emp;
+    LOOP
+        FETCH c_emp INTO v_empno, v_sal;
+        EXIT WHEN c_emp%NOTFOUND;
+
+        UPDATE emp
+        SET sal = v_sal + (v_sal * 0.10)
+        WHERE empno = v_empno;
+    END LOOP;
+    CLOSE c_emp;
+
+    DBMS_OUTPUT.PUT_LINE('Salaries updated successfully.');
+END;
+/
+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+
+***Problem 3:Display total salary for each department using a cursor.
+
+Solution:
+
+DECLARE
+    CURSOR dept_cursor IS
+        SELECT deptno, SUM(sal) AS total_sal
+        FROM emp
+        GROUP BY deptno;
+    v_deptno emp.deptno%TYPE;
+    v_total  NUMBER;
+BEGIN
+    OPEN dept_cursor;
+    LOOP
+        FETCH dept_cursor INTO v_deptno, v_total;
+        EXIT WHEN dept_cursor%NOTFOUND;
+        DBMS_OUTPUT.PUT_LINE('Department: ' || v_deptno || 
+                             ', Total Salary: ' || v_total);
+    END LOOP;
+    CLOSE dept_cursor;
+END;
+/
+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+*** Problem 4: Write a program using a cursor FOR loop to display employee names and job titles.
+
+Solution:
+
+BEGIN
+    FOR rec IN (SELECT ename, job FROM emp)
+    LOOP
+        DBMS_OUTPUT.PUT_LINE('Name: ' || rec.ename || ', Job: ' || rec.job);
+    END LOOP;
+END;
+/
+
+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+*** Problem 5: Display names of employees whose salary is greater than the average salary using a cursor.
+
+Solution:
+
+DECLARE
+    v_avg_sal NUMBER;
+    CURSOR c_high_sal IS
+        SELECT ename, sal FROM emp WHERE sal > v_avg_sal;
+BEGIN
+    SELECT AVG(sal) INTO v_avg_sal FROM emp;
+    DBMS_OUTPUT.PUT_LINE('Average Salary: ' || v_avg_sal);
+    
+    FOR rec IN c_high_sal
+    LOOP
+        DBMS_OUTPUT.PUT_LINE('Above Average: ' || rec.ename || ' - ' || rec.sal);
+    END LOOP;
+END;
+/
+
+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+
+*** Problem 6: Use Parameterized Cursor: Display all employees belonging to a given department using a parameterized cursor.
+
+Solution:
+
+DECLARE
+    CURSOR c_dept(p_deptno NUMBER) IS
+        SELECT ename, sal FROM emp WHERE deptno = p_deptno;
+BEGIN
+    FOR rec IN c_dept(10)
+    LOOP
+        DBMS_OUTPUT.PUT_LINE('Dept 10 - ' || rec.ename || ' : ' || rec.sal);
+    END LOOP;
+END;
+/
+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+*** Problem 7: Use Parameterized Cursor with USER INPUT: Display all employees belonging to a given department using a parameterized cursor.
+
+
+Solution:
+
+DECLARE
+    v_deptno NUMBER;  -- user input
+    v_count  NUMBER := 0;  -- to count employees manually
+
+    CURSOR c_dept(p_deptno NUMBER) IS
+        SELECT ename, sal FROM emp WHERE deptno = p_deptno;
+BEGIN
+    -- Take user input for department number
+    v_deptno := &deptno;
+
+    DBMS_OUTPUT.PUT_LINE('Employees in Department ' || v_deptno || ':');
+
+    FOR rec IN c_dept(v_deptno)
+    LOOP
+        v_count := v_count + 1;
+        DBMS_OUTPUT.PUT_LINE('Name: ' || rec.ename || ' | Salary: ' || rec.sal);
+    END LOOP;
+
+    -- Check if any employee was found
+    IF v_count = 0 THEN
+        DBMS_OUTPUT.PUT_LINE('No employees found for Department ' || v_deptno);
+    END IF;
+END;
+/
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+*** Problem 8: Using %FOUND — Check if Any Employee Found in Department
+
+Write a PL/SQL block to display employees of a given department number.
+If no employees exist for that department, print a message using the %FOUND attribute.
+
+
+Solution:
+
+DECLARE
+    CURSOR c_emp IS
+        SELECT ename, sal FROM emp WHERE deptno = 100;  -- Try 10, 20, 30, 
+    v_name emp.ename%TYPE;
+    v_sal  emp.sal%TYPE;
+BEGIN
+    OPEN c_emp;
+    FETCH c_emp INTO v_name, v_sal;
+
+    IF c_emp%FOUND THEN
+        DBMS_OUTPUT.PUT_LINE('Employees found in the department:');
+        LOOP
+            DBMS_OUTPUT.PUT_LINE('Name: ' || v_name || ', Salary: ' || v_sal);
+            FETCH c_emp INTO v_name, v_sal;
+            EXIT WHEN c_emp%NOTFOUND;
+        END LOOP;
+    ELSE
+        DBMS_OUTPUT.PUT_LINE('No employees found in this department.');
+    END IF;
+
+    CLOSE c_emp;
+END;
+/
+
+
+*** USER INPUT****
+
+SET SERVEROUTPUT ON;
+
+DECLARE
+    v_deptno NUMBER := &deptno;  -- Take user input for department number
+    v_name   emp.ename%TYPE;
+    v_sal    emp.sal%TYPE;
+
+    CURSOR c_emp(p_deptno NUMBER) IS
+        SELECT ename, sal FROM emp WHERE deptno = p_deptno;
+BEGIN
+    OPEN c_emp(v_deptno);
+    FETCH c_emp INTO v_name, v_sal;
+
+    IF c_emp%FOUND THEN
+        DBMS_OUTPUT.PUT_LINE('Employees found in Department ' || v_deptno || ':');
+        LOOP
+            DBMS_OUTPUT.PUT_LINE('Name: ' || v_name || ', Salary: ' || v_sal);
+            FETCH c_emp INTO v_name, v_sal;
+            EXIT WHEN c_emp%NOTFOUND;
+        END LOOP;
+    ELSE
+        DBMS_OUTPUT.PUT_LINE('No employees found in Department ' || v_deptno);
+    END IF;
+
+    CLOSE c_emp;
+END;
+/
+---------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+Problem 9: Using %ROWCOUNT — Count Employees Processed
+Write a PL/SQL block to increase the salary of all employees in department 10 by 10% and display how many rows were updated using the %ROWCOUNT attribute.
+
+Solution:
+
+SET SERVEROUTPUT ON;
+DECLARE
+    CURSOR c_emp IS
+        SELECT empno, sal FROM emp WHERE deptno = 10; 			 -- You can change to &deptno for input
+    v_empno emp.empno%TYPE;
+    v_sal   emp.sal%TYPE;
+    v_count NUMBER := 0;  -- counter to track updates
+BEGIN
+    OPEN c_emp;
+    LOOP
+        FETCH c_emp INTO v_empno, v_sal;
+        EXIT WHEN c_emp%NOTFOUND;
+
+        UPDATE emp
+        SET sal = v_sal + (v_sal * 0.10)
+        WHERE empno = v_empno;
+
+        v_count := v_count + 1;
+
+        DBMS_OUTPUT.PUT_LINE('Updated Employee No: ' || v_empno ||
+                             ' | New Salary: ' || (v_sal + (v_sal * 0.10)));
+        DBMS_OUTPUT.PUT_LINE('Rows processed so far: ' || v_count);
+    END LOOP;
+
+    CLOSE c_emp;
+    COMMIT;
+
+    DBMS_OUTPUT.PUT_LINE('Total employees updated: ' || v_count);
+END;
+/
+
+
+*** USER INPUT VERSION***
+
+SET SERVEROUTPUT ON;
+
+DECLARE
+    v_deptno NUMBER := &deptno;  -- Prompt user for department number
+
+    CURSOR c_emp IS
+        SELECT empno, sal 
+        FROM emp 
+        WHERE deptno = v_deptno;
+
+    v_empno emp.empno%TYPE;
+    v_sal   emp.sal%TYPE;
+    v_count NUMBER := 0;  -- Counter for number of updates
+BEGIN
+    OPEN c_emp;
+    LOOP
+        FETCH c_emp INTO v_empno, v_sal;
+        EXIT WHEN c_emp%NOTFOUND;
+
+        UPDATE emp
+        SET sal = v_sal + (v_sal * 0.10)
+        WHERE empno = v_empno;
+
+        v_count := v_count + 1;
+
+        DBMS_OUTPUT.PUT_LINE('Updated Employee No: ' || v_empno ||
+                             ' | New Salary: ' || (v_sal + (v_sal * 0.10)));
+        DBMS_OUTPUT.PUT_LINE('Rows processed so far: ' || v_count);
+    END LOOP;
+
+    CLOSE c_emp;
+    COMMIT;
+
+    IF v_count = 0 THEN
+        DBMS_OUTPUT.PUT_LINE('No employees found in Department ' || v_deptno);
+    ELSE
+        DBMS_OUTPUT.PUT_LINE('Total employees updated in Department ' || v_deptno || ': ' || v_count);
+    END IF;
+END;
+/
+-----------------------------------------------------------------------------------------------------------------------------------------------
+
+*** Problem 10: Display Employees Above a Given Salary (User Input + Cursor FOR Loop)
+Problem Statement : Accept a minimum salary from the user and display all employees earning above that salary.
+
+
+SET SERVEROUTPUT ON;
+
+DECLARE
+    v_min_sal NUMBER := &min_salary;  -- User input for minimum salary
+    v_count   NUMBER := 0;            -- Counter for total employees
+BEGIN
+    DBMS_OUTPUT.PUT_LINE('Employees earning above ' || v_min_sal || ':');
+
+    FOR rec IN (SELECT empno, ename, sal 
+                FROM emp 
+                WHERE sal > v_min_sal)
+    LOOP
+        v_count := v_count + 1;
+
+        DBMS_OUTPUT.PUT_LINE('Emp No: ' || rec.empno || 
+                             ' | Name: ' || rec.ename || 
+                             ' | Salary: ' || rec.sal);
+    END LOOP;
+
+    DBMS_OUTPUT.PUT_LINE('--------------------------------------------');
+    DBMS_OUTPUT.PUT_LINE('Total Employees earning above ' || v_min_sal || ': ' || v_count);
+
+    IF v_count = 0 THEN
+        DBMS_OUTPUT.PUT_LINE('No employees found above this salary.');
+    END IF;
+END;
+/
+---------------------------------------------------------------------------------------------------------------------------------------------------
+
+*** Problem 11:Show Department-Wise Total Salary (Using Cursor Attributes)
+
+Display total salary for each department using an explicit cursor and %ROWCOUNT.
+
+Solution:
+
+SET SERVEROUTPUT ON;
+
+DECLARE
+    CURSOR c_dept IS
+        SELECT deptno, SUM(sal) AS total_sal 
+        FROM emp 
+        GROUP BY deptno;
+
+    v_deptno emp.deptno%TYPE;
+    v_total  NUMBER;
+BEGIN
+    OPEN c_dept;
+    LOOP
+        FETCH c_dept INTO v_deptno, v_total;
+        EXIT WHEN c_dept%NOTFOUND;
+
+        DBMS_OUTPUT.PUT_LINE('Dept No: ' || v_deptno || 
+                             ' | Total Salary: ' || v_total ||
+                             ' | Row Count: ' || c_dept%ROWCOUNT);
+    END LOOP;
+    CLOSE c_dept;
+END;
+/
+
+--------------------------------------------------------------------------------------------------------------------------------------------------
+
+Problem 12: Check if Cursor is Open (%ISOPEN)
+Problem Statement: Demonstrate the use of %ISOPEN cursor attribute.
+
+Solution:
+
+SET SERVEROUTPUT ON;
+
+DECLARE
+    CURSOR c_emp IS
+        SELECT ename, sal FROM emp WHERE deptno = &deptno;
+
+    v_name emp.ename%TYPE;
+    v_sal  emp.sal%TYPE;
+BEGIN
+    IF c_emp%ISOPEN THEN
+        DBMS_OUTPUT.PUT_LINE('Cursor is already open.');
+    ELSE
+        DBMS_OUTPUT.PUT_LINE('Cursor is not open yet.');
+    END IF;
+
+    OPEN c_emp;
+
+    IF c_emp%ISOPEN THEN
+        DBMS_OUTPUT.PUT_LINE('Cursor is now open.');
+    END IF;
+
+    LOOP
+        FETCH c_emp INTO v_name, v_sal;
+        EXIT WHEN c_emp%NOTFOUND;
+        DBMS_OUTPUT.PUT_LINE('Employee: ' || v_name || ', Salary: ' || v_sal);
+    END LOOP;
+
+    CLOSE c_emp;
+
+    IF NOT c_emp%ISOPEN THEN
+        DBMS_OUTPUT.PUT_LINE('Cursor is now closed.');
+    END IF;
+END;
+/
+----------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+Problem 13: Parameterized Cursor with Two User Inputs : Display employees of a given department earning above a certain salary.
+
+
+SET SERVEROUTPUT ON;
+
+DECLARE
+    v_deptno NUMBER := &deptno;
+    v_minsal NUMBER := &min_salary;
+
+    CURSOR c_emp(p_deptno NUMBER, p_minsal NUMBER) IS
+        SELECT ename, sal 
+        FROM emp 
+        WHERE deptno = p_deptno AND sal > p_minsal;
+BEGIN
+    DBMS_OUTPUT.PUT_LINE('Employees in Dept ' || v_deptno ||
+                         ' earning above ' || v_minsal || ':');
+
+    FOR rec IN c_emp(v_deptno, v_minsal)
+    LOOP
+        DBMS_OUTPUT.PUT_LINE('Name: ' || rec.ename || ', Salary: ' || rec.sal);
+    END LOOP;
+END;
+/
+
+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+Problem 14: Increase Salary by User-Defined Percentage: Ask for a department number and percentage increase, and update salaries accordingly.
+
+Solution:
+
+SET SERVEROUTPUT ON;
+
+DECLARE
+    v_deptno NUMBER := &deptno;
+    v_percent NUMBER := &percent_increase;
+
+    CURSOR c_emp IS
+        SELECT empno, sal FROM emp WHERE deptno = v_deptno;
+
+    v_empno emp.empno%TYPE;
+    v_sal   emp.sal%TYPE;
+    v_count NUMBER := 0;
+BEGIN
+    OPEN c_emp;
+    LOOP
+        FETCH c_emp INTO v_empno, v_sal;
+        EXIT WHEN c_emp%NOTFOUND;
+
+        UPDATE emp
+        SET sal = v_sal + (v_sal * v_percent / 100)
+        WHERE empno = v_empno;
+
+        v_count := v_count + 1;
+
+        DBMS_OUTPUT.PUT_LINE('Updated Emp No: ' || v_empno ||
+                             ' | New Salary: ' || (v_sal + (v_sal * v_percent / 100)));
+    END LOOP;
+
+    CLOSE c_emp;
+    COMMIT;
+
+    IF v_count = 0 THEN
+        DBMS_OUTPUT.PUT_LINE('No employees found in Dept ' || v_deptno);
+    ELSE
+        DBMS_OUTPUT.PUT_LINE('Total Employees Updated: ' || v_count);
+    END IF;
+END;
+/
+
+--------------------------------------------------------------------------------------------------------------------------------------------------------
+
+Problem 15: Cursor with Exception Handling: Write a cursor program to handle the case when no employees are found for a given department.
+
+Solution:
+
+SET SERVEROUTPUT ON;
+
+DECLARE
+    v_deptno NUMBER := &deptno;
+    CURSOR c_emp IS
+        SELECT ename, sal FROM emp WHERE deptno = v_deptno;
+
+    v_name emp.ename%TYPE;
+    v_sal  emp.sal%TYPE;
+    v_count NUMBER := 0;
+BEGIN
+    OPEN c_emp;
+    LOOP
+        FETCH c_emp INTO v_name, v_sal;
+        EXIT WHEN c_emp%NOTFOUND;
+        v_count := v_count + 1;
+        DBMS_OUTPUT.PUT_LINE('Name: ' || v_name || ', Salary: ' || v_sal);
+    END LOOP;
+    CLOSE c_emp;
+
+    IF v_count = 0 THEN
+        RAISE_APPLICATION_ERROR(-20001, 'No employees found for Dept ' || v_deptno);
+    END IF;
+
+EXCEPTION
+    WHEN OTHERS THEN
+        DBMS_OUTPUT.PUT_LINE('Error: ' || SQLERRM);
+END;
+/
+
+
+*** Q. Do we have to write the error code -20001?
+
+Purpose of RAISE_APPLICATION_ERROR
+
+The RAISE_APPLICATION_ERROR procedure lets you generate your own custom error messages in PL/SQL programs.
+It’s useful when you want to:
+
+a. Stop execution under a specific business condition (like “no employees found”)
+b. Display a clear, user-friendly message instead of Oracle’s default errors
+
+Syntax:
+RAISE_APPLICATION_ERROR(error_number, error_message);
+
+Example:
+RAISE_APPLICATION_ERROR(-20001, 'No employees found for Dept ' || v_deptno);
+
+
+*** Rule for Error Numbers:
+
+Oracle reserves a specific range for user-defined errors:
+
+Range			Purpose
+-20000 to -20999		Reserved for user-defined errors
+Anything outside this range	❌ Not allowed — Oracle will throw an “invalid error number” error
+
+So we can use any number between -20000 and -20999 — for example:
+
+-20001
+-20005
+-20999
+
+Each can correspond to a different kind of custom error if you want.
+
+
+*** Why Include the Error Code?
+
+Because Oracle needs to distinguish your custom error from its system-defined ones (like ORA-01403, ORA-00942, etc.).
+That’s why the code is required — it tells Oracle this is a user-defined exception, not an internal one.
+
+
+*** Example with and without Custom Error
+
+(a) With custom error (recommended)
+IF v_count = 0 THEN
+    RAISE_APPLICATION_ERROR(-20001, 'No employees found for Dept ' || v_deptno);
+END IF;
+
+
+Output: ORA-20001: No employees found for Dept 40
+
+(b) Without RAISE_APPLICATION_ERROR (only message)
+IF v_count = 0 THEN
+    DBMS_OUTPUT.PUT_LINE('No employees found for Dept ' || v_deptno);
+END IF;
+
+
+Output:
+
+No employees found for Dept 40

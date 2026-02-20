@@ -114,6 +114,61 @@
       "title": "Payslip Updated Whole",
       "date": "2026-02-04",
       "file": "files/sql/2026-02-04/payslipwhole(updated).sql"
+    },
+    {
+      "title": "Bubble S",
+      "date": "2026-02-11",
+      "file": "files/sql/2026-02-11/513bubblesort.sql"
+    },
+    {
+      "title": "Frequency",
+      "date": "2026-02-11",
+      "file": "files/sql/2026-02-11/513freq.sql"
+    },
+    {
+      "title": "Triad",
+      "date": "2026-02-11",
+      "file": "files/sql/2026-02-11/513triad.sql"
+    },
+    {
+      "title": "Practice 1",
+      "date": "2026-02-18",
+      "file": "files/sql/2026-02-18/prac1.sql"
+    },
+    {
+      "title": "Practice 2 function",
+      "date": "2026-02-18",
+      "file": "files/sql/2026-02-18/prac2_func.sql"
+    },
+    {
+      "title": "Practice 2 main",
+      "date": "2026-02-18",
+      "file": "files/sql/2026-02-18/prac2_main.sql"
+    },
+    {
+      "title": "Practice 3 function",
+      "date": "2026-02-18",
+      "file": "files/sql/2026-02-18/prac3_func.sql"
+    },
+    {
+      "title": "Practice 3 main",
+      "date": "2026-02-18",
+      "file": "files/sql/2026-02-18/prac3_main.sql"
+    },
+    {
+      "title": "Cursor(KG)",
+      "date": "2026-02-18",
+      "file": "files/sql/2026-02-18/pl_sql_cursor(KG).sql"
+    },
+    {
+      "title": "PL SQL 1_2(KG)",
+      "date": "2026-02-18",
+      "file": "files/sql/2026-02-18/PLSQL1_2(KG).pdf"
+    },
+    {
+      "title": "PL SQL 3(KG)",
+      "date": "2026-02-18",
+      "file": "files/sql/2026-02-18/plsql3(KG).pdf"
     }
   ],
 
