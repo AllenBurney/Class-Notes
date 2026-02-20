@@ -1,0 +1,11 @@
+Types of variables-:
+	a) Numerical-:
+		i)Interval
+		ii)Ratio
+	b) Categorical-:
+		i)Nominal(NO order) - for encoding we use one hot encoding. eg-Gender(F,M,O).
+		so we'll have 3 different column. When Gender is Male, Column for male will
+		have 1 and other(Female column, Other column) will have 0.
+		ii)Ordinal
+		
+		

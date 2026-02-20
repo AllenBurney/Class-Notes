@@ -1,0 +1,31 @@
+Employee_ID,Department,Education_Level,City,Satisfaction_Rating
+28,Sales,Bachelor's,Chicago,High
+30,Marketing,Master's,New York,Medium
+13,IT,High School,Los Angeles,Low
+21,HR,Bachelor's,Chicago,High
+1,Finance,Master's,Houston,Very High
+15,Sales,Bachelor's,Miami,Medium
+20,IT,PhD,New York,High
+23,Marketing,High School,Los Angeles,Low
+9,HR,Bachelor's,Houston,Medium
+7,Finance,Master's,Chicago,Very High
+10,Sales,Bachelor's,Berkley,High
+18,IT,High School,Los Angeles,Low
+27,Marketing,Bachelor's,New York,Medium
+22,HR,Master's,Houston,High
+5,Finance,PhD,Chicago,Very High
+6,Sales,Bachelor's,Berkley,Medium
+4,IT,Master's,New York,High
+16,Marketing,High School,Los Angeles,Low
+3,HR,Bachelor's,Chicago,Medium
+29,Finance,Master's,Houston,Very High
+19,Sales,Bachelor's,Miami,High
+11,IT,PhD,New York,Medium
+24,Marketing,High School,Chicago,Low
+17,HR,Bachelor's,Los Angeles,High
+8,Finance,Master's,Houston,Very High
+25,Sales,Bachelor's,Miami,Medium
+26,IT,High School,New York,Low
+12,Marketing,Bachelor's,Chicago,High
+2,HR,Master's,Los Angeles,Medium
+14,Finance,PhD,Houston,Very High
