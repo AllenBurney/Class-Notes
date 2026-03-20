@@ -287,6 +287,16 @@
       "title": "Data Cleaning Day-7 Notes",
       "date": "2026-02-17",
       "file": "files/DS/2026-02-17/notes1.txt"
+    },
+    {
+      "title": "Data Cleaning Day-8 File",
+      "date": "2026-03-17",
+      "file": "files/DS/2026-03-17/job_change.csv"
+    },
+    {
+      "title": "Data Cleaning Day-8 Prog",
+      "date": "2026-03-17",
+      "file": "files/DS/2026-03-17/17_03.ipynb"
     }
   ],
 
@@ -390,6 +400,21 @@
       "title": "Day 6",
       "date": "2026-02-19",
       "file": "files/PL/2026-02-19/Day6.txt"
+    },
+    {
+      "title": "listpermute",
+      "date": "2026-03-12",
+      "file": "files/PL/2026-03-12/listpermute.pl"
+    },
+    {
+      "title": "Tower Of Hanoi",
+      "date": "2026-03-19",
+      "file": "files/PL/2026-03-19/toh.pl"
+    },
+    {
+      "title": "Metro Rail",
+      "date": "2026-03-19",
+      "file": "files/PL/2026-03-19/metrorail.pl"
     }
   ]
 }
