@@ -2,6 +2,6 @@
 
 Programming files for **Semester 6** subjects:
 
-* Programming Languages (PL)
+* DBMS (PLSQL)
 * Data Structures (DS)
 * Artificial Intelligence (AI)
